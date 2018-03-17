@@ -27,3 +27,9 @@ h1 {
 .users li {
     margin: 0.8em 1.2em;
 }
+
+.add-user {
+    font-size: 0.9em;
+    border-top: 2px solid #eee;
+    padding: 0.5em;
+}

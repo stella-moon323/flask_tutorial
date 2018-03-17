@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -14,11 +14,22 @@ class User(db.Model):
     def __init__(self, username):
         self.username = username
 
+
 @app.route('/')
 def hello():
     user_list = User.query.all()
     return render_template('hello.html', user_list=user_list)
 
+
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    username = request.form.get('username')
+    if username:
+        user = User(username)
+        db.session.add(user)
+        db.session.commit()
+    return redirect(url_for('hello'))
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
