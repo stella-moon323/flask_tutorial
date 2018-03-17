@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
-    <script> </script>
-    <title>User Detail</title>
-</head>
-<body>
-    <div class="page">
-        <h1>User Detail</h1>
-        <form action="{{ url_for('mod_user', user_id=target_user.id) }}" method="post">
-            <dl class="show-user">
-                <dt>ID</dt><dd>{{ target_user.id }}</dd>
-                <dt>Name</dt>
-                <dd><input type="text" size="30" name="username" value="{{ target_user.username }}"></dd>
-            </dl>
-            <input type="submit" value="Submit">
-        </form>
-        <a href="{{ url_for('hello') }}">Back</a>
-        <form action="{{ url_for('del_user', user_id=target_user.id) }}" method="post" class="del-form">
-            <input type="submit" value="Delete">
-        </form>
-    </div>
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form action="{{ url_for('mod_user', user_id=target_user.id) }}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="user_id" class="col-sm-2 control-label">ID</label>
+            <div class="col-sm-10">
+                <input type="text" id="user_id" class="form-control" value="{{ target_user.id }}" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">名前</label>
+            <div class="col-sm-10">
+                <input type="text" id="username" class="form-control" value="{{ target_user.username }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 変更
+                </button>
+            </div>
+        </div>
+    </form>
+    <a href="{{ url_for('top') }}" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 戻る
+    </a>
+    <form action="{{ url_for('del_user', user_id=target_user.id) }}" method="post" class="text-right">
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+        </button>
+    </form>
+{% endblock %}

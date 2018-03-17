@@ -16,9 +16,9 @@ class User(db.Model):
 
 
 @app.route('/')
-def hello():
+def top():
     user_list = User.query.all()
-    return render_template('hello.html', user_list=user_list)
+    return render_template('top.html', title="ユーザー一覧", user_list=user_list)
 
 
 @app.route('/add_user', methods=['POST'])
@@ -28,13 +28,13 @@ def add_user():
         user = User(username)
         db.session.add(user)
         db.session.commit()
-    return redirect(url_for('hello'))
+    return redirect(url_for('top'))
     
 
 @app.route('/user/<int:user_id>', methods=['GET'])
 def show_user(user_id):
     target_user = User.query.get(user_id)
-    return render_template('show.html', target_user=target_user)
+    return render_template('show.html', title="ユーザー詳細", target_user=target_user)
 
 
 @app.route('/user/<int:user_id>', methods=['POST'])
@@ -44,7 +44,7 @@ def mod_user(user_id):
     if target_user and username:
         target_user.username = username
         db.session.commit()
-    return redirect(url_for('hello'))
+    return redirect(url_for('top'))
 
 
 @app.route('/del_user/<int:user_id>', methods=['POST'])
@@ -53,7 +53,7 @@ def del_user(user_id):
     if target_user:
         db.session.delete(target_user)
         db.session.commit()
-    return redirect(url_for('hello'))
+    return redirect(url_for('top'))
 
 
 if __name__ == '__main__':
