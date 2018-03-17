@@ -6,6 +6,7 @@
                 <tr>
                     <th>ID</th>
                     <th>名前</th>
+                    <th>投稿</th>
                     <th>詳細</th>
                 </tr>
             </thead>
@@ -14,8 +15,9 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
+                    <td>{{ user.posts | join(', ') }}</td>
                     <td>
-                        <a href="{{ url_for('show_user', user_id=user.id) }}">
+                        <a href="{{ url_for('show_user', user_id=user.id) }}"class="btn btn-success">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 詳細
                         </a>
                     </td>

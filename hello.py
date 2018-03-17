@@ -10,9 +10,25 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
+    posts = db.relationship('Post', backref='user', lazy=True)
 
     def __init__(self, username):
         self.username = username
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, title, body, user_id):
+        self.title = title
+        self.body = body
+        self.user_id = user_id
+    
+    def __str__(self):
+        return self.title
 
 
 @app.route('/')
