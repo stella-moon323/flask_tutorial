@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+    <script> </script>
+    <title>User Detail</title>
+</head>
+<body>
+    <div class="page">
+        <h1>User Detail</h1>
+        <dl class="show-user">
+            <dt>ID</dt><dd>{{ target_user.id }}</dd>
+            <dt>Name</dt><dd>{{ target_user.username }}</dd>
+        </dl>
+        <a href="{{ url_for('hello') }}">Back</a>
+    </div>
+</body>
+</html>

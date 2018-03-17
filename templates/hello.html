@@ -11,7 +11,7 @@
         <h1>Hello World!</h1>
         <ul class="users">
             {% for user in user_list %}
-                <li>Hello {{ user.username }}</li>
+            <li><a href="{{ url_for('show_user', user_id=user.id) }}">Detail</a> Hello {{ user.username }}</li>
             {% endfor %}
         </ul>
         <form action="{{ url_for('add_user') }}" method="post" class="add-user">

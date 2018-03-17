@@ -33,3 +33,12 @@ h1 {
     border-top: 2px solid #eee;
     padding: 0.5em;
 }
+
+.show-user dt {
+    float: left;
+    font-weight: bold;
+}
+
+.show-user dd {
+    margin-left: 100px;
+}

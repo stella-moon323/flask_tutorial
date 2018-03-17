@@ -31,6 +31,12 @@ def add_user():
     return redirect(url_for('hello'))
     
 
+@app.route('/user/<int:user_id>', methods=['GET'])
+def show_user(user_id):
+    target_user = User.query.get(user_id)
+    return render_template('show.html', target_user=target_user)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
