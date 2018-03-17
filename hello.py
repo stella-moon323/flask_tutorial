@@ -37,6 +37,16 @@ def show_user(user_id):
     return render_template('show.html', target_user=target_user)
 
 
+@app.route('/user/<int:user_id>', methods=['POST'])
+def mod_user(user_id):
+    target_user = User.query.get(user_id)
+    username = request.form.get('username')
+    if target_user and username:
+        target_user.username = username
+        db.session.commit()
+    return redirect(url_for('hello'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 

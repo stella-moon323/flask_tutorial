@@ -9,10 +9,14 @@
 <body>
     <div class="page">
         <h1>User Detail</h1>
-        <dl class="show-user">
-            <dt>ID</dt><dd>{{ target_user.id }}</dd>
-            <dt>Name</dt><dd>{{ target_user.username }}</dd>
-        </dl>
+        <form action="{{ url_for('mod_user', user_id=target_user.id) }}" method="post">
+            <dl class="show-user">
+                <dt>ID</dt><dd>{{ target_user.id }}</dd>
+                <dt>Name</dt>
+                <dd><input type="text" size="30" name="username" value="{{ target_user.username }}"></dd>
+            </dl>
+            <input type="submit" value="Submit">
+        </form>
         <a href="{{ url_for('hello') }}">Back</a>
     </div>
 </body>
