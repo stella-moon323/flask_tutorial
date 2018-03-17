@@ -18,6 +18,9 @@
             <input type="submit" value="Submit">
         </form>
         <a href="{{ url_for('hello') }}">Back</a>
+        <form action="{{ url_for('del_user', user_id=target_user.id) }}" method="post" class="del-form">
+            <input type="submit" value="Delete">
+        </form>
     </div>
 </body>
 </html>

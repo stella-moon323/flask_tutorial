@@ -47,6 +47,15 @@ def mod_user(user_id):
     return redirect(url_for('hello'))
 
 
+@app.route('/del_user/<int:user_id>', methods=['POST'])
+def del_user(user_id):
+    target_user = User.query.get(user_id)
+    if target_user:
+        db.session.delete(target_user)
+        db.session.commit()
+    return redirect(url_for('hello'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 

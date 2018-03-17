@@ -42,3 +42,14 @@ h1 {
 .show-user dd {
     margin-left: 100px;
 }
+
+.del-form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.del-form input {
+    color: white;
+    background-color: red;
+}
+
